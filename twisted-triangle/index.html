@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/lib/webgl-utils.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <canvas id="canvas" width="1024px" height="1024px"></canvas>
+        
+        <script id="2d-vertex-shader" type="x-shader/x-vertex">
+            attribute vec2 a_position;
+            uniform vec2 multiplier;
+            varying vec4 vColor;
+
+            uniform vec2 u_resolution;
+            
+            void main() {
+                
+                // 旋转因子
+                vec2 multiplier_a = vec2(multiplier[1], multiplier[1]);
+                vec2 multiplier_b = vec2(- multiplier[0], multiplier[0]);
+
+                // 旋转方程 和 坐标轴变换
+                vec2 t = (a_position * multiplier_a + vec2(a_position[1], a_position[0]) * multiplier_b); // / u_resolution * 2.0 - 1.0;
+                
+                // gl_Position = vec4(t * vec2(1, -1), 0, 1);
+                gl_Position = vec4(t, 0, 1);
+
+                vColor = vec4(0.12156862745098039215686274509804, 0.11764705882352941176470588235294, 0.2, 1.0);
+            }
+        </script>
+
+        <script id="2d-fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+
+            varying vec4 vColor;
+
+            void main(void){
+                gl_FragColor = vColor;
+            }
+
+        </script>
+
+    </body>
+</html>

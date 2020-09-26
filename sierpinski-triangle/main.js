@@ -83,10 +83,6 @@ function middle2(p1, p2) {
     return {x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2};
 }
 
-function middle3(p1, p2, p3) {
-    return {x: (p1.x + p2.x + p3.x) / 3, y: (p1.y + p2.y + p3.y) / 3}
-}
-
 function drawing(depth, p1, p2, p3) {
     if (depth < max_depth) {
         m1 = middle2(p1, p2);
@@ -101,21 +97,7 @@ function drawing(depth, p1, p2, p3) {
         m3 = middle2(p3, p1);
         drawing(depth + 1, m3, m2, p3);
 
-        //m1 = middle2(p1, p2);
-        //m2 = middle2(p2, p3);
-        //m3 = middle2(p3, p1);
-        //drawing(depth + 1, 
-        //    middle3(p1, m1, m3),
-        //    middle3(m1, p2, m2),
-        //    middle3(m3, m2, p3),
-        //    );
     } else {
-        //console.log({
-        //    depth: depth,
-        //    p1: p1,
-        //    p2: p2,
-        //    p3: p3
-        //});
     
         iii++;
         console.log("A_" + iii + "=(" + p1.x + "," + p1.y + ")");
@@ -124,7 +106,4 @@ function drawing(depth, p1, p2, p3) {
 
         setTriangle(p1, p2, p3);
     }
-
-
-
 }

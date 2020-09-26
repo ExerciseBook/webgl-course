@@ -1,5 +1,5 @@
 /**
- * 参考 谢尔宾斯基三角形
+ * 参考 谢尔宾斯基四面体
  */
 
 max_depth = 5;
@@ -39,7 +39,6 @@ function render_init() {
     if (vertexShader !== undefined && fragmentShader !== undefined)
         main();
 };
-
 
 function main() {
     // Get A WebGL context
@@ -92,8 +91,6 @@ function main() {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(points), gl.STATIC_DRAW);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLES, 0, points.length);
-
-    //window.requestAnimationFrame(step);
 }
 
 
@@ -130,9 +127,7 @@ function drawing(depth, p1, p2, p3, p4) {
         m5 = middle2(p2, p4);
         m6 = middle2(p3, p4);
         drawing(depth, m4, m5, m6, p4);
-
     } else {
-    
         iii++;
         console.log("A_" + iii + "=(" + p1.x + "," + p1.y + ")");
         console.log("B_" + iii + "=(" + p2.x + "," + p2.y + ")");
@@ -144,15 +139,4 @@ function drawing(depth, p1, p2, p3, p4) {
         setTriangle(p1, p4, p3);
         setTriangle(p1, p2, p4);
     }
-
-
-}
-
-function step(timestamp) {
-    if (start === undefined)
-      start = timestamp;
-    const elapsed = timestamp - start;
-  
-
-
 }

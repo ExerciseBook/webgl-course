@@ -1,32 +1,11 @@
 <html>
     <head>
-        <script type="text/javascript" src="/lib/webgl-utils.js"></script>
+        <script type="text/javascript" src="../lib/KicoNetwork.js"></script>
+        <script type="text/javascript" src="../lib/webgl-utils.js"></script>
         <script src="main.js"></script>
     </head>
     <body>
         <canvas id="canvas" width="1024px" height="1024px"></canvas>
-        
-        <script id="2d-vertex-shader" type="x-shader/x-vertex">
-            attribute vec2 a_position;
-            varying vec4 vColor;
-            uniform vec2 u_resolution;
-            
-            void main() {
-                gl_Position = vec4(a_position, 0, 1);
-                vColor = vec4(0.12156862745098039215686274509804, 0.11764705882352941176470588235294, 0.2, 1.0);
-            }
         </script>
-
-        <script id="2d-fragment-shader" type="x-shader/x-fragment">
-            precision mediump float;
-
-            varying vec4 vColor;
-
-            void main(void){
-                gl_FragColor = vColor;
-            }
-
-        </script>
-
     </body>
 </html>

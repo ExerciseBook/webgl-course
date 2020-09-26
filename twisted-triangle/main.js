@@ -8,14 +8,45 @@ var points = [];
 var angle = 48 * 3.1415926535 / 180;
 var iii = 0;
 
-window.onload = function() {
+window.onload = function () {
+    KicoNetwork.Ajax({
+        url : "vertex.vsh", 
+        success: function (req, data){
+            vertexShader = data;
+            render_init();
+        },
+        failed: function (req){
+            location.reload();
+        }
+    });
+
+    KicoNetwork.Ajax({
+        url : "fragment.fsh", 
+        success: function (req, data){
+            fragmentShader = data;
+            render_init();
+        },
+        failed: function (req){
+            location.reload();
+        }
+    });
+    
+}
+
+function render_init() {
+    if (vertexShader !== undefined && fragmentShader !== undefined)
+        main();
+};
+
+
+function main() {
     // Get A WebGL context
     var canvas = document.getElementById("canvas");
     gl = canvas.getContext("experimental-webgl");
 
     // setup a GLSL program
-    var vertexShader = createShaderFromScriptElement(gl, "2d-vertex-shader");
-    var fragmentShader = createShaderFromScriptElement(gl, "2d-fragment-shader");
+    vertexShader = loadShader(gl, vertexShader,  gl.VERTEX_SHADER, undefined);
+    fragmentShader = loadShader(gl, fragmentShader,  gl.FRAGMENT_SHADER, undefined);
     var program = createProgram(gl, [vertexShader, fragmentShader]);
     gl.useProgram(program);
 

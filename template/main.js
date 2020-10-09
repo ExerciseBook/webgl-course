@@ -1,7 +1,3 @@
-/**
- * 参考 谢尔宾斯基三角形
- */
-
 max_depth = 5;
 var gl;
 var colorLocation;
@@ -69,7 +65,7 @@ function main() {
     p2 = {x:1,  y:-1}
     p3 = {x:0,  y:Math.sqrt(3) - 1}
     
-    setTriangle(gl, gl, p2, p3);
+    setTriangle(gl, p1, p2, p3);
     gl.uniform4f(colorLocation, 0, 0, 1, 1);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 

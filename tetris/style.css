@@ -1,0 +1,23 @@
+/* 先整一个正方形 */
+.square {
+    margin: auto;
+
+    width: 90vmin;
+    height: 90vmin;
+}
+
+/* 然后将这个正方形切成两部分 */
+.screen {
+    width: 50%;
+    height: 100%;
+}
+
+
+.screen-container {
+    float: left;
+}
+
+.screen > canvas {
+    height: 100%;
+    width: 100%;
+}

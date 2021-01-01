@@ -15,7 +15,24 @@ var fragmentShader = undefined;
 /**
  * 俄罗斯方块屏幕信息
  */
-var tetris_screen = null;
+var tetris_screen = {
+    r: Array.apply(null, Array(16 + 3)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
+    g: Array.apply(null, Array(16 + 3)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
+    b: Array.apply(null, Array(16 + 3)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
+    // a: Array.apply(null, Array(16)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
+    s: Array.apply(null, Array(16 + 3)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
+
+    row: 16,
+    col: 8,
+};
+
+var tetris_activated = {
+    shape: Math.floor(Math.random() * 7),
+    rotate: 0,
+    x: 5,
+    y: 5,
+}
+
 
 /**
  * 加载信息
@@ -103,6 +120,7 @@ function setSquare(gl, p1, p2, p3, p4, r, g, b, a){
 }
 
 function gameloop(){
+    // 渲染固定信息
     for (let i = 0; i < tetris_screen.row; i++) {
         for (let j = 0; j < tetris_screen.col; j++) {
             if (tetris_screen.s[i][j] != 0) {
@@ -126,6 +144,7 @@ function gameloop(){
         }
     }
 
+    // 渲染非固定信息
 
     p1 = {x:Math.random() * 16, y:Math.random() * 8};
     p2 = {x:Math.random() * 16, y:Math.random() * 8};
@@ -142,25 +161,7 @@ function regitserGameLoop(){
 }
 
 function tetrisInit(){
-    tetris_screen = {
-        r: Array.apply(null, Array(16)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
-        g: Array.apply(null, Array(16)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
-        b: Array.apply(null, Array(16)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
-        // a: Array.apply(null, Array(16)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
-        s: Array.apply(null, Array(16)).map((_, h) => Array.apply(null, Array(8)).map((_, h) => 0 ) ),
 
-        row: 16,
-        col: 8,
-    }
-    
-    tetris_screen.r[0][0] = 1;
-    tetris_screen.s[0][0] = 1;
-    tetris_screen.r[0][1] = 1;
-    tetris_screen.s[0][1] = 1;
-    tetris_screen.r[0][2] = 1;
-    tetris_screen.s[0][2] = 1;
-    tetris_screen.r[0][3] = 1;
-    tetris_screen.s[0][3] = 1;
     tetris_screen.p = true;
 
 
